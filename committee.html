@@ -4,39 +4,50 @@ title: Committee
 permalink: /committee/
 description: Meet the people who spearhead the various initiatives lauched by IEEE-HKN NUS.
 ---
-	
+
 <section class="wrapper style5">
 	<div class="inner">
-		{% for comm in site.data.comms %}
-		<section>
-			<h4>{{ comm.name }}</h4>
-			{% for sem in comm.semester %}
-			{% if sem.semname %}
-			<h5>{{ sem.semname }}</h5>
-			{% endif %}
-			<div class="table-wrapper">
-				<table>
-					<col width="50%">
-					<col width="50%">
-					<thead>
-						<tr>
-							<th><b>Designation</b></th>
-							<th><b>Name</b></th>													
-						</tr>
-					</thead>
-					<tbody>
-					{% for member in sem.members %}
-						<tr>
-							<td>{{ member.designation }}</td>
-							<td>{{ member.name }}</td>
-						</tr>
+		<ul class="jekyllcodex_accordion">
+			{% for comm in site.data.comms %}
+			<li>				
+				<input 
+					id="accordion{{ forloop.index }}" 
+					class="hidden"
+					type="checkbox"
+				>
+				</input>
+				<label for="accordion{{ forloop.index }}">
+					<h4>{{ comm.name }}</h4>
+				</label>
+				<div class="table-wrapper">
+					{% for sem in comm.semester %}
+					{% if sem.semname %}
+					<h5>{{ sem.semname }}</h5>
+					{% endif %}
+					<table>
+						<col width="50%">
+						<col width="50%">
+						<thead>
+							<tr>
+								<th><b>Designation</b></th>
+								<th><b>Name</b></th>													
+							</tr>
+						</thead>
+						<tbody>
+						{% for member in sem.members %}
+							<tr>
+								<td>{{ member.designation }}</td>
+								<td>{{ member.name }}</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+					<br/>
 					{% endfor %}
-					</tbody>
-				</table>
-			</div>
+				</div>			
+				<br>
+			</li>
 			{% endfor %}
-		</section>
-
-		<br><br>
-		{% endfor %}
+		</ul>
+	</div>
 </section>
